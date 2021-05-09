@@ -1,0 +1,23 @@
+{
+  "name": "CaesarCipherCLI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NatalliaK/CaesarCipherCLI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NatalliaK/CaesarCipherCLI/issues"
+  },
+  "homepage": "https://github.com/NatalliaK/CaesarCipherCLI#readme",
+  "dependencies": {
+    "commander": "^7.2.0"
+  }
+}
