@@ -8,7 +8,8 @@ const { getTransformStream } = require("./transformStream");
 const handleErrorStream = (err) => process.exit(1);
 
 const getReadStream = (input) => {
-  const inputPath = path.resolve(`${__dirname}/${input}`);
+
+  const inputPath = path.isAbsolute(input) ? input : path.normalize(path.join(`${__dirname}/${input}`));
 
   return new Promise((res, rej) => {
     if (input) {
@@ -27,7 +28,8 @@ const getReadStream = (input) => {
 };
 
 const getOutputStream = (output) => {
-  const outputPath = path.resolve(`${__dirname}/${output}`);
+  const outputPath = path.isAbsolute(output) ? output : path.normalize(path.join(`${__dirname}/${output}`));
+  console.log('output', output);
 
   return new Promise((res, rej) => {
     if (output) {

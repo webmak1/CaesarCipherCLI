@@ -11,6 +11,6 @@ program
   .option("-i, --input <input>", "an input file")
   .option("-o, --output <output>", "an output file")
   .requiredOption("-a, --action <action>", "an action encode / decode")
-  .action((args) => processMessage(args));
+  .action(processMessage);
 
 program.parse(process.argv);
