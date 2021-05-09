@@ -8,14 +8,16 @@ const { getTransformStream } = require("./transformStream");
 const handleErrorStream = (err) => process.exit(1);
 
 const getReadStream = (input) => {
-
-  const inputPath = path.isAbsolute(input) ? input : path.normalize(path.join(`${__dirname}/${input}`));
+  const inputPath =
+    input && path.isAbsolute(input)
+      ? input
+      : path.normalize(path.join(`${__dirname}/${input}`));
 
   return new Promise((res, rej) => {
     if (input) {
       fs.access(inputPath, fs.constants.R_OK, (err) => {
         if (err) {
-          console.error(
+          process.stderr.write(
             `You can't read this input file: ${inputPath} or this file isn't exist`
           );
           process.exit(1);
@@ -28,14 +30,16 @@ const getReadStream = (input) => {
 };
 
 const getOutputStream = (output) => {
-  const outputPath = path.isAbsolute(output) ? output : path.normalize(path.join(`${__dirname}/${output}`));
-  console.log('output', output);
+  const outputPath =
+    output && path.isAbsolute(output)
+      ? output
+      : path.normalize(path.join(`${__dirname}/${output}`));
 
   return new Promise((res, rej) => {
     if (output) {
       fs.access(outputPath, fs.constants.W_OK, (err) => {
         if (err) {
-          console.error(
+          process.stderr.write(
             `You can't write this output file: ${outputPath} or this file isn't exist`
           );
           process.exit(1);
@@ -61,10 +65,10 @@ const processMessage = (options) => {
           readStream,
           getTransformStream(shift, action),
           writeStream,
-          (err) => handleErrorStream(err)
+          handleErrorStream
         );
       })
-      .catch((err) => handleErrorStream(err));
+      .catch(handleErrorStream);
   }
 };
 

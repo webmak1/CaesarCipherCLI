@@ -19,7 +19,7 @@ const validateUserValue = (data) => {
     if (data.hasOwnProperty(key)) {
       let value = handlerValues[key](data[key]);
       if (value === false || value === undefined) {
-        console.error(errorMessages[key]);
+        process.stderr.write(errorMessages[key]);
         return validateData;
       } else {
         validateData.data[key] = value;
