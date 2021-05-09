@@ -13,7 +13,7 @@ const handlerValues = {
   output: (value) => (!!~value.lastIndexOf(".txt") ? value : undefined), // if file name exists .txt return filename
 };
 
-const validateUserValue = (data) => {
+const validateUserData = (data) => {
   let validateData = { isValidate: false, data: {} };
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
@@ -30,4 +30,4 @@ const validateUserValue = (data) => {
   return validateData;
 };
 
-module.exports = { validateUserValue };
+module.exports = { validateUserData };
